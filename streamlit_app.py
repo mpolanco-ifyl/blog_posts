@@ -1,12 +1,9 @@
 import streamlit as st
-import openai_secret_manager
-
-# Get GPT-3 API key
-secrets = openai_secret_manager.get_secret("openai")
-api_key = secrets["api_key"]
-
+import os
 import openai
-openai.api_key = api_key
+
+# Autenticación de OpenAI (oculta la clave en una variable de entorno)
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 # Define the prompt for GPT-3
 def generate_text(prompt):
